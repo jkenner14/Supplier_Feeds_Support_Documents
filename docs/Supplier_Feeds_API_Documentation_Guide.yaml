@@ -1,0 +1,55 @@
+# cd /Users/j0k05pj/github/1pSupplier_feeds_support_documents/Supplier_Feeds_API
+# openapi preview-docs Supplier_Feeds_API_Documentation_Guide.yaml
+# Port: http://127.0.0.1:8080
+# Linting (Kenner): spectral lint --ruleset /Users/j0k05pj/github/_linting/spectral.yaml Supplier_Feeds_API_Documentation_Guide.yaml
+# Post production: python3 /Users/r0d07yb/IdeaProjects/common/save_production_files.py "Supplier_Item_API_Documentation_Guide"
+# Public site: https://developer.walmart.com/api/us/supplier/feeds 
+# Python script to generate production files: python3 production_builds.py Supplier_Feeds_API_Documentation_Guide
+#   *IF PYTHON SCRIPT WORKS, DO NOT DO THIS* HTML build command (optional, as team requests): redoc-cli build -o ../docs/Supplier_Feeds_API_Documentation_Guide.html Supplier_Feeds_API_Documentation_Guide.yaml
+#   *IF PYTHON SCRIPT WORKS, DO NOT DO THIS* HTML build command (mandatory): redoc-cli build -o ../docs/index.html Supplier_Feeds_API_Documentation_Guide.yaml
+#   *IF PYTHON SCRIPT WORKS, DO NOT DO THIS* Convert to JSON (mandatory):
+#     swagger-cli bundle -o ../docs/Supplier_Feeds_API_Documentation_Guide.json -r -t json Supplier_Feeds_API_Documentation_Guide.yaml
+#   *IF PYTHON SCRIPT WORKS, DO NOT DO THIS* Manually change date in json file
+# Internal review: https://gecgithub01.walmart.com/pages/j0k05pj/1pSupplier_feeds_support_documents/
+# Release procedures: XXX None as of 09Apr24
+# Reviewers: Parker Baum
+
+openapi: 3.0.1
+info:
+  # termsOfService: http://swagger.io/terms/
+  #  contact:
+  #    email: apiteam@walmart.com
+  #  license:
+  #    name: Apache 2.0
+  #    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Feed Management
+  description: |
+    Feeds are constructed to handle bulk functions. 
+    
+    A feed consists of an HTTP request with an attached file. The attached file contains the XML representing the objects that need to be created or updated. 
+    
+    Requests in the Feeds API are used to check the status of a feed submission.
+
+    **May 2024**<br>Built: 05/09/2024, 12:38:35
+  version: "1.0"
+
+servers:
+  - url: https://api-gateway.walmart.com
+    description: Production URL
+  - url: https://sandbox.walmartapis.com
+    description: Sandbox URL
+
+paths:
+#GET All Feed Statuses
+  /v3/feeds:
+    $ref: 'requests/get_all_feed_statuses.yaml'
+  
+#GET A Feed Item Status
+  /v3/feeds/{feedId}:
+    $ref: 'requests/get_a_feed_item_status.yaml'
+
+x-tagGroups: 
+  - name: 1P Suppliers Feeds Reference
+    tags: 
+      - Feeds
+
